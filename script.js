@@ -530,6 +530,112 @@ const birdData = {
             funFact: "A relative of toucans and aracaris, the smallish saffron toucanet occupies the Atlantic Forests of Argentina, Brazil, and Paraguay."
         }
     ],
+    "lory-loft": [
+        {
+            id: "luzon-hornbill",
+            name: "Luzon Hornbill",
+            chineseName: "吕宋犀鸟",
+            image: "luzon-hornbill.jpg",
+            zone: "Lory Loft",
+            lifespan: "20-30 years",
+            diet: "Fruits, insects, small animals",
+            habitat: "Tropical forests",
+            range: "Luzon and nearby islands, Philippines",
+            iucnStatus: "Near Threatened",
+            funFact: "This diminutive hornbill is restricted to Luzon and nearby islands in the Philippines. Males and females look different, with males being mostly pale while females are entirely black."
+        },
+        {
+            id: "northern-cassowary",
+            name: "Northern Cassowary",
+            chineseName: "北食火鸡",
+            image: "northern-cassowary.jpg",
+            zone: "Lory Loft",
+            lifespan: "40-50 years",
+            diet: "Fruits, insects, small animals",
+            habitat: "Tropical rainforests",
+            range: "Northern New Guinea",
+            iucnStatus: "Vulnerable",
+            funFact: "The northern cassowary, the world's fourth largest bird, is incredibly agile, able to run 50 kilometers (30 miles) per hour through dense undergrowth, leap 2 meters (7 ft) into the air, and even swim."
+        },
+        {
+            id: "purple-naped-lory",
+            name: "Purple-naped Lory",
+            chineseName: "紫颈鹦鹉",
+            image: "purple-naped-lory.jpg",
+            zone: "Lory Loft",
+            lifespan: "15-25 years",
+            diet: "Nectar, fruits, flowers",
+            habitat: "Tropical forests",
+            range: "Seram Island, Indonesia",
+            iucnStatus: "Near Threatened",
+            funFact: "Endemic to the island of Seram in the vast Indonesian archipelago, the purple-naped lory is the only red parrot in its forests with green wings."
+        },
+        {
+            id: "rainbow-lorikeet",
+            name: "Rainbow Lorikeet",
+            chineseName: "彩虹吸蜜鹦鹉",
+            image: "rainbow-lorikeet.jpg",
+            zone: "Lory Loft",
+            lifespan: "15-25 years",
+            diet: "Nectar, pollen, fruits",
+            habitat: "Forests, woodlands, urban areas",
+            range: "Australia",
+            iucnStatus: "Least Concern",
+            funFact: "Rainbow lorikeets, found in habitats ranging from forest edges to urban areas, once had a broader range. Today, however, they are confined to Australia, with populations elsewhere now recognized as distinct species."
+        },
+        {
+            id: "scarlet-breasted-lorikeet",
+            name: "Scarlet-breasted Lorikeet",
+            chineseName: "红胸吸蜜鹦鹉",
+            image: "scarlet-breasted-lorikeet.jpg",
+            zone: "Lory Loft",
+            lifespan: "15-25 years",
+            diet: "Nectar, fruits, flowers",
+            habitat: "Lowland forests",
+            range: "Bali, Lombok, and nearby islands",
+            iucnStatus: "Near Threatened",
+            funFact: "Found only in Bali, Lombok, and nearby islands, this restricted-range lorikeet inhabits lowland forests and is recognized by its four subspecies."
+        },
+        {
+            id: "umbrella-cockatoo",
+            name: "Umbrella Cockatoo",
+            chineseName: "白凤头鹦鹉",
+            image: "umbrella-cockatoo.jpg",
+            zone: "Lory Loft",
+            lifespan: "40-60 years",
+            diet: "Seeds, nuts, fruits, insects",
+            habitat: "Tropical forests",
+            range: "Northern Moluccas, Indonesia",
+            iucnStatus: "Endangered",
+            funFact: "This endangered cockatoo from Northern Moluccas, Indonesia, is so named as it has a crest that looks like an umbrella when erected, which happens when the bird is excited or alarmed."
+        },
+        {
+            id: "western-crowned-pigeon",
+            name: "Western Crowned-Pigeon",
+            chineseName: "西冠鸠",
+            image: "western-crowned-pigeon.jpg",
+            zone: "Lory Loft",
+            lifespan: "15-20 years",
+            diet: "Fruits, seeds, insects",
+            habitat: "Tropical forests",
+            range: "West Papua, Indonesia",
+            iucnStatus: "Vulnerable",
+            funFact: "Crowned with a lacy crest, this massive pigeon lives in West Papua, Indonesia. It feeds on fruits and insects on the forest floor during the day and roosts in trees at night."
+        },
+        {
+            id: "yellow-mantled-chattering-lory",
+            name: "Yellow-Mantled Chattering Lory",
+            chineseName: "黄背喋喋鹦鹉",
+            image: "yellow-mantled-chattering-lory.jpg",
+            zone: "Lory Loft",
+            lifespan: "15-25 years",
+            diet: "Nectar, fruits, flowers",
+            habitat: "Tropical forests",
+            range: "North Moluccas, Indonesia",
+            iucnStatus: "Near Threatened",
+            funFact: "Chattering lories are predominantly red in colour with green wings. Three subspecies are endemic to the forests of North Moluccas, with each occupying different island clusters and varying slightly in appearance."
+        }
+    ],
     "penguin-cove": [
         {
             id: "king-penguin",
