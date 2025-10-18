@@ -692,56 +692,56 @@ const birdData = {
     ],
     "penguin-cove": [
         {
-            id: "king-penguin",
-            name: "King Penguin",
-            chineseName: "国王企鹅",
-            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-            zone: "Penguin Cove",
-            lifespan: "15-20 years",
-            diet: "Fish, squid, krill",
-            habitat: "Sub-Antarctic islands",
-            range: "South Atlantic, South Indian Ocean",
-            iucnStatus: "Least Concern",
-            funFact: "The second largest penguin species. They can dive to depths of over 300 meters and hold their breath for up to 5 minutes."
-        },
-        {
             id: "gentoo-penguin",
             name: "Gentoo Penguin",
             chineseName: "巴布亚企鹅",
-            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+            image: "gentoo-penguin.jpg",
             zone: "Penguin Cove",
             lifespan: "15-20 years",
             diet: "Fish, krill, squid",
             habitat: "Antarctic and sub-Antarctic islands",
             range: "Antarctic Peninsula, sub-Antarctic islands",
             iucnStatus: "Near Threatened",
-            funFact: "The fastest swimming penguin, reaching speeds of up to 36 km/h underwater. They build nests using stones."
+            funFact: "Gentoo Penguins is the world's fastest underwater bird, swimming at speeds of up to 36km/h!"
         },
         {
-            id: "rockhopper-penguin",
-            name: "Rockhopper Penguin",
-            chineseName: "跳岩企鹅",
-            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+            id: "humboldt-penguin",
+            name: "Humboldt Penguin",
+            chineseName: "洪堡企鹅",
+            image: "humboldt-penguin.jpg",
+            zone: "Penguin Cove",
+            lifespan: "15-20 years",
+            diet: "Fish, squid, krill",
+            habitat: "Coastal areas",
+            range: "Peru and Chile",
+            iucnStatus: "Vulnerable",
+            funFact: "The Humboldt penguin is a medium-sized black-and-white penguin."
+        },
+        {
+            id: "king-penguin",
+            name: "King Penguin",
+            chineseName: "国王企鹅",
+            image: "king-penguin.jpg",
+            zone: "Penguin Cove",
+            lifespan: "15-20 years",
+            diet: "Fish, squid, krill",
+            habitat: "Sub-Antarctic islands",
+            range: "South Atlantic, South Indian Ocean",
+            iucnStatus: "Least Concern",
+            funFact: "The King Penguin stands at a height of 1 metre. It is the second tallest penguin, after the Emperor Penguin, which is 1.3m tall."
+        },
+        {
+            id: "northern-rockhopper-penguin",
+            name: "Northern Rockhopper Penguin",
+            chineseName: "北跳岩企鹅",
+            image: "northern-rockhopper-penguin.jpg",
             zone: "Penguin Cove",
             lifespan: "10-15 years",
             diet: "Fish, krill, squid",
             habitat: "Rocky coastlines",
-            range: "Sub-Antarctic islands",
-            iucnStatus: "Vulnerable",
-            funFact: "Named for their ability to hop from rock to rock. They have distinctive yellow crests and red eyes, and are known for their aggressive behavior."
-        },
-        {
-            id: "chinstrap-penguin",
-            name: "Chinstrap Penguin",
-            chineseName: "帽带企鹅",
-            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-            zone: "Penguin Cove",
-            lifespan: "15-20 years",
-            diet: "Fish, krill, squid",
-            habitat: "Antarctic islands",
-            range: "Antarctic Peninsula, South Sandwich Islands",
-            iucnStatus: "Least Concern",
-            funFact: "Named for the thin black line under their chin. They are one of the most aggressive penguin species and can swim up to 80 km per day."
+            range: "Tristan da Cunha, Gough Island",
+            iucnStatus: "Endangered",
+            funFact: "Rockhopper penguins are so named because of their ability to hop over rocks and boulders, sometimes reaching heights of up to 1.8m."
         }
     ],
     "song-birds": [
