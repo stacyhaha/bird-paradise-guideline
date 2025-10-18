@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Images Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+            padding: 20px;
+            color: #2F4F4F;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2F4F4F;
+            margin-bottom: 30px;
+        }
+        .bird-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .bird-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid #90EE90;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .bird-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        .bird-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2F4F4F;
+            margin-bottom: 10px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .success {
+            background: #90EE90;
+            color: #2F4F4F;
+        }
+        .error {
+            background: #FFB6C1;
+            color: #8B0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦅 Bird Images Test</h1>
+        <p style="text-align: center; margin-bottom: 30px;">
+            Testing the 5 birds you want to replace with your images
+        </p>
+        
+        <div class="bird-grid">
+            <div class="bird-card">
+                <img src="images/amazonian-motmot.jpg" alt="Amazonian Motmot" class="bird-image" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div style="display:none; padding:20px; background:#FFB6C1; border-radius:10px;">
+                    ❌ Image not found
+                </div>
+                <div class="bird-name">Amazonian Motmot</div>
+                <div class="status success">✅ Ready</div>
+            </div>
+            
+            <div class="bird-card">
+                <img src="images/cotinga.jpg" alt="Pompadour Cotinga" class="bird-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div style="display:none; padding:20px; background:#FFB6C1; border-radius:10px;">
+                    ❌ Image not found
+                </div>
+                <div class="bird-name">Pompadour Cotinga</div>
+                <div class="status success">✅ Ready</div>
+            </div>
+            
+            <div class="bird-card">
+                <img src="images/cardinal.jpg" alt="Red-crested Cardinal" class="bird-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div style="display:none; padding:20px; background:#FFB6C1; border-radius:10px;">
+                    ❌ Image not found
+                </div>
+                <div class="bird-name">Red-crested Cardinal</div>
+                <div class="status success">✅ Ready</div>
+            </div>
+            
+            <div class="bird-card">
+                <img src="images/toucan-barbet.jpg" alt="Saffron Toucanet" class="bird-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div style="display:none; padding:20px; background:#FFB6C1; border-radius:10px;">
+                    ❌ Image not found
+                </div>
+                <div class="bird-name">Saffron Toucanet</div>
+                <div class="status success">✅ Ready</div>
+            </div>
+            
+            <div class="bird-card">
+                <img src="images/amazon-parrot.jpg" alt="Green-cheeked Amazon" class="bird-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div style="display:none; padding:20px; background:#FFB6C1; border-radius:10px;">
+                    ❌ Image not found
+                </div>
+                <div class="bird-name">Green-cheeked Amazon</div>
+                <div class="status success">✅ Ready</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.8); border-radius: 15px;">
+            <h3>🎯 Next Steps:</h3>
+            <p>1. If images look good, open <a href="index.html" style="color: #2F4F4F; font-weight: bold;">index.html</a> to see them in the main app</p>
+            <p>2. Click on any bird to mark it as "Found" and upload your own photos</p>
+            <p>3. Enjoy your personalized Bird Paradise Guide! 🦅✨</p>
+        </div>
+    </div>
+</body>
+</html>

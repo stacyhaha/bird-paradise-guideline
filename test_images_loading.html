@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Images Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .bird-test {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+        }
+        .bird-test img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+        .status {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Bird Images Loading Test</h1>
+    <p>Testing if all bird images can be loaded correctly...</p>
+    
+    <div id="test-results"></div>
+
+    <script>
+        // List of bird IDs from script.js
+        const birdIds = [
+            "javan-rhinoceros-hornbill", "oriental-magpie-robin", "red-whiskered-bulbul", "white-throated-kingfisher",
+            "asian-koel", "common-myna", "asian-pied-starling", "yellow-vented-bulbul", "african-grey-parrot",
+            "lovebird", "senegal-parrot", "blue-and-gold-macaw", "cockatiel", "eclectus-parrot",
+            "american-flamingo", "great-blue-heron", "roseate-spoonbill", "white-ibis", "wood-duck",
+            "mandarin-duck", "black-crowned-night-heron", "laughing-kookaburra", "rainbow-lorikeet",
+            "sulphur-crested-cockatoo", "emu", "galah", "tawny-frogmouth", "superb-fairy-wren",
+            "australian-pelican", "scarlet-macaw", "toucan", "harpy-eagle", "amazonian-motmot",
+            "green-winged-macaw", "keel-billed-toucan", "blue-and-yellow-macaw", "amazon-parrot",
+            "sunbittern", "king-penguin", "gentoo-penguin", "rockhopper-penguin", "chinstrap-penguin",
+            "canary", "nightingale", "cardinal", "robin", "goldfinch", "lark", "bald-eagle",
+            "peregrine-falcon", "red-tailed-hawk", "great-horned-owl", "osprey", "resplendent-quetzal",
+            "hornbill", "trogon", "toucan-barbet", "paradise-tanager", "cotinga", "albatross",
+            "seagull", "pelican", "cormorant", "tern"
+        ];
+
+        function testImageLoading() {
+            const resultsDiv = document.getElementById('test-results');
+            let successCount = 0;
+            let errorCount = 0;
+
+            birdIds.forEach(birdId => {
+                const testDiv = document.createElement('div');
+                testDiv.className = 'bird-test';
+                
+                const img = document.createElement('img');
+                img.src = `images/${birdId}.jpg`;
+                img.alt = birdId;
+                
+                const statusDiv = document.createElement('div');
+                statusDiv.className = 'status';
+                statusDiv.textContent = `Loading ${birdId}...`;
+                
+                testDiv.appendChild(img);
+                testDiv.appendChild(statusDiv);
+                resultsDiv.appendChild(testDiv);
+                
+                img.onload = function() {
+                    statusDiv.textContent = `✅ ${birdId}`;
+                    statusDiv.className = 'status success';
+                    successCount++;
+                    updateSummary();
+                };
+                
+                img.onerror = function() {
+                    statusDiv.textContent = `❌ ${birdId} - Failed to load`;
+                    statusDiv.className = 'status error';
+                    errorCount++;
+                    updateSummary();
+                };
+            });
+            
+            function updateSummary() {
+                const summary = document.getElementById('summary');
+                if (summary) {
+                    summary.textContent = `Success: ${successCount}, Errors: ${errorCount}`;
+                } else {
+                    const summaryDiv = document.createElement('div');
+                    summaryDiv.id = 'summary';
+                    summaryDiv.style.marginTop = '20px';
+                    summaryDiv.style.fontSize = '18px';
+                    summaryDiv.style.fontWeight = 'bold';
+                    summaryDiv.textContent = `Success: ${successCount}, Errors: ${errorCount}`;
+                    resultsDiv.appendChild(summaryDiv);
+                }
+            }
+        }
+
+        // Start testing when page loads
+        window.onload = testImageLoading;
+    </script>
+</body>
+</html>
