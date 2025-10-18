@@ -129,6 +129,67 @@ body {
     box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
 }
 
+/* Data management section */
+.data-management {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.data-btn {
+    padding: 10px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.export-btn {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.export-btn:hover {
+    background: #218838;
+    border-color: #1e7e34;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.import-btn {
+    background: #17a2b8;
+    color: white;
+    border-color: #17a2b8;
+}
+
+.import-btn:hover {
+    background: #138496;
+    border-color: #117a8b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+.clear-btn {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.clear-btn:hover {
+    background: #c82333;
+    border-color: #bd2130;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
 /* Birds grid - 5 cards per row */
 .birds-grid {
     display: grid;

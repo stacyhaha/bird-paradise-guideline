@@ -35,6 +35,12 @@
             <button id="searchBtn" class="search-btn">Search</button>
         </div>
 
+        <div class="data-management">
+            <button onclick="exportData()" class="data-btn export-btn">📥 导出数据</button>
+            <button onclick="importData()" class="data-btn import-btn">📤 导入数据</button>
+            <button onclick="clearAllData()" class="data-btn clear-btn">🗑️ 清除数据</button>
+        </div>
+
         <div class="birds-grid" id="birdsGrid">
             <!-- Birds will be dynamically loaded here -->
         </div>

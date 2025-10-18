@@ -901,6 +901,72 @@ function loadBirdPhoto(birdId) {
     return birdPhotos[birdId] || null;
 }
 
+// Backup and restore functions
+function exportData() {
+    const data = {
+        foundBirds: JSON.parse(localStorage.getItem('foundBirds') || '{}'),
+        birdPhotos: JSON.parse(localStorage.getItem('birdPhotos') || '{}'),
+        exportDate: new Date().toISOString(),
+        version: '1.0'
+    };
+    
+    const dataStr = JSON.stringify(data, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    const url = URL.createObjectURL(dataBlob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `bird-paradise-backup-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    alert('数据已导出！请保存这个文件作为备份。');
+}
+
+function importData() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    
+    input.onchange = function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    if (data.foundBirds) {
+                        localStorage.setItem('foundBirds', JSON.stringify(data.foundBirds));
+                    }
+                    if (data.birdPhotos) {
+                        localStorage.setItem('birdPhotos', JSON.stringify(data.birdPhotos));
+                    }
+                    
+                    alert('数据导入成功！页面将刷新。');
+                    location.reload();
+                } catch (error) {
+                    alert('文件格式错误，请选择正确的备份文件。');
+                }
+            };
+            reader.readAsText(file);
+        }
+    };
+    
+    input.click();
+}
+
+function clearAllData() {
+    if (confirm('确定要清除所有数据吗？此操作不可恢复！')) {
+        localStorage.removeItem('foundBirds');
+        localStorage.removeItem('birdPhotos');
+        alert('所有数据已清除！页面将刷新。');
+        location.reload();
+    }
+}
+
 // Global variables
 let foundBirds = loadFoundBirds();
 
