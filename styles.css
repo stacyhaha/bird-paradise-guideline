@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+    background: #ffffff;
     min-height: 100vh;
     color: #2F4F4F;
 }
@@ -22,11 +22,11 @@ body {
 .header {
     text-align: center;
     margin-bottom: 40px;
-    background: rgba(255, 255, 255, 0.8);
+    background: #ffffff;
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
 }
 
 .title {
@@ -51,14 +51,15 @@ body {
     gap: 10px;
     margin-bottom: 30px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #ffffff;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
 }
 
 .filter-tag {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
     border-radius: 25px;
     padding: 6px 12px;
     cursor: pointer;
@@ -66,21 +67,20 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     color: #2F4F4F;
-    backdrop-filter: blur(10px);
 }
 
 .filter-tag:hover {
-    background: rgba(255, 255, 255, 0.4);
-    border-color: #90EE90;
+    background: #e9ecef;
+    border-color: #6c757d;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(144, 238, 144, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .filter-tag.active {
-    background: linear-gradient(45deg, #90EE90, #32CD32);
-    border-color: #32CD32;
+    background: #007bff;
+    border-color: #0056b3;
     color: white;
-    box-shadow: 0 4px 15px rgba(50, 205, 50, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     transform: translateY(-2px);
 }
 
@@ -94,39 +94,39 @@ body {
 
 .search-input {
     padding: 12px 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid #e0e0e0;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: #ffffff;
+    color: #2F4F4F;
     font-size: 1rem;
     width: 300px;
-    backdrop-filter: blur(10px);
 }
 
 .search-input::placeholder {
-    color: #b8d4f0;
+    color: #6c757d;
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #ffd700;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
 }
 
 .search-btn {
     padding: 12px 25px;
-    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    background: #007bff;
     border: none;
     border-radius: 25px;
-    color: #1e3c72;
+    color: white;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .search-btn:hover {
+    background: #0056b3;
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
 }
 
 /* Birds grid - 5 cards per row */
@@ -137,8 +137,8 @@ body {
 }
 
 .bird-card {
-    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
     border-radius: 20px;
     padding: 20px;
     cursor: pointer;
@@ -150,14 +150,13 @@ body {
 
 .bird-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-color: #007bff;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.2);
 }
 
 .bird-card.found {
     border-color: #FFD700;
-    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 255, 255, 0.95));
 }
 
 .bird-image {
@@ -184,7 +183,7 @@ body {
 }
 
 .bird-zone {
-    background: rgba(255, 255, 255, 0.3);
+    background: #e9ecef;
     color: #2F4F4F;
     padding: 6px 12px;
     border-radius: 15px;
@@ -192,7 +191,6 @@ body {
     display: inline-block;
     margin-bottom: 10px;
     font-weight: 600;
-    backdrop-filter: blur(10px);
 }
 
 .bird-status {
@@ -203,7 +201,7 @@ body {
 }
 
 .status-item {
-    background: rgba(255, 255, 255, 0.3);
+    background: #f8f9fa;
     color: #2F4F4F;
     padding: 6px 10px;
     border-radius: 10px;
@@ -211,7 +209,7 @@ body {
     margin: 0 2px;
     text-align: center;
     font-weight: 600;
-    backdrop-filter: blur(10px);
+    border: 1px solid #e0e0e0;
 }
 
 /* Found/Not Found status display */
@@ -283,8 +281,8 @@ body {
 }
 
 .photo-upload-section {
-    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid #90EE90;
     border-radius: 20px;
     padding: 20px;
     margin: 20px 0;
@@ -300,9 +298,9 @@ body {
 
 .photo-upload-section input[type="file"] {
     padding: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid #90EE90;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.8);
+    background: white;
     color: #2F4F4F;
     font-size: 1rem;
     cursor: pointer;
@@ -356,11 +354,10 @@ body {
 }
 
 .info-card {
-    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
     border-radius: 15px;
     padding: 20px;
-    backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -403,8 +400,8 @@ body {
 .back-btn {
     display: inline-block;
     padding: 12px 25px;
-    background: linear-gradient(45deg, #ffd700, #ffed4e);
-    color: #1e3c72;
+    background: #007bff;
+    color: white;
     text-decoration: none;
     border-radius: 25px;
     font-weight: 700;
@@ -413,8 +410,9 @@ body {
 }
 
 .back-btn:hover {
+    background: #0056b3;
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
 }
 
 /* Responsive design */
