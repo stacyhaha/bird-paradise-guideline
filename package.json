@@ -1,0 +1,16 @@
+{
+  "name": "bird-paradise",
+  "version": "1.0.0",
+  "description": "Bird Paradise Guide - A Pokédex-style bird discovery website",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Static site - serve index.html'"
+  },
+  "keywords": ["birds", "wildlife", "static", "website"],
+  "author": "Bird Paradise Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
