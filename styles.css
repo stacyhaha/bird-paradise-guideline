@@ -137,8 +137,8 @@ body {
 }
 
 .bird-card {
-    background: rgba(255, 255, 255, 0.95);
-    border: 3px solid #90EE90;
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+    border: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     padding: 20px;
     cursor: pointer;
@@ -150,13 +150,14 @@ body {
 
 .bird-card:hover {
     transform: translateY(-5px);
-    border-color: #32CD32;
-    box-shadow: 0 8px 25px rgba(50, 205, 50, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .bird-card.found {
     border-color: #FFD700;
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 255, 255, 0.95));
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 .bird-image {
@@ -183,7 +184,7 @@ body {
 }
 
 .bird-zone {
-    background: #90EE90;
+    background: rgba(255, 255, 255, 0.3);
     color: #2F4F4F;
     padding: 6px 12px;
     border-radius: 15px;
@@ -191,6 +192,7 @@ body {
     display: inline-block;
     margin-bottom: 10px;
     font-weight: 600;
+    backdrop-filter: blur(10px);
 }
 
 .bird-status {
@@ -201,7 +203,7 @@ body {
 }
 
 .status-item {
-    background: rgba(144, 238, 144, 0.3);
+    background: rgba(255, 255, 255, 0.3);
     color: #2F4F4F;
     padding: 6px 10px;
     border-radius: 10px;
@@ -209,6 +211,7 @@ body {
     margin: 0 2px;
     text-align: center;
     font-weight: 600;
+    backdrop-filter: blur(10px);
 }
 
 /* Found/Not Found status display */
@@ -280,8 +283,8 @@ body {
 }
 
 .photo-upload-section {
-    background: rgba(255, 255, 255, 0.9);
-    border: 3px solid #90EE90;
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+    border: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     padding: 20px;
     margin: 20px 0;
@@ -297,9 +300,9 @@ body {
 
 .photo-upload-section input[type="file"] {
     padding: 10px;
-    border: 2px solid #90EE90;
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 10px;
-    background: white;
+    background: rgba(255, 255, 255, 0.8);
     color: #2F4F4F;
     font-size: 1rem;
     cursor: pointer;
@@ -353,8 +356,8 @@ body {
 }
 
 .info-card {
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid #90EE90;
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     padding: 20px;
     backdrop-filter: blur(10px);
