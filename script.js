@@ -636,6 +636,60 @@ const birdData = {
             funFact: "Chattering lories are predominantly red in colour with green wings. Three subspecies are endemic to the forests of North Moluccas, with each occupying different island clusters and varying slightly in appearance."
         }
     ],
+    "mysterious-papua": [
+        {
+            id: "palm-cockatoo",
+            name: "Palm Cockatoo",
+            chineseName: "棕榈凤头鹦鹉",
+            image: "palm-cockatoo.jpg",
+            zone: "Mysterious Papua",
+            lifespan: "40-60 years",
+            diet: "Nuts, seeds, fruits, insects",
+            habitat: "Tropical rainforests",
+            range: "Northern Australia, New Guinea",
+            iucnStatus: "Vulnerable",
+            funFact: "The palm cockatoo is the world's largest cockatoo. Its distinctive cheek patch of bare skin flushes from pink to bright red when the bird is alarmed or excited."
+        },
+        {
+            id: "salmon-crested-cockatoo",
+            name: "Salmon-crested Cockatoo",
+            chineseName: "鲑冠凤头鹦鹉",
+            image: "salmon-crested-cockatoo.jpg",
+            zone: "Mysterious Papua",
+            lifespan: "40-60 years",
+            diet: "Seeds, nuts, fruits, insects",
+            habitat: "Tropical forests",
+            range: "Seram Island, Indonesia",
+            iucnStatus: "Vulnerable",
+            funFact: "Cockatoos have distinctive head crests which are normally kept folded back on the top of the head when relaxed. These are raised as a sign of agitation or curiosity, and to signal threat or romantic intentions."
+        },
+        {
+            id: "southern-cassowary",
+            name: "Southern Cassowary",
+            chineseName: "南食火鸡",
+            image: "southern-cassowary.jpg",
+            zone: "Mysterious Papua",
+            lifespan: "40-50 years",
+            diet: "Fruits, insects, small animals",
+            habitat: "Tropical rainforests",
+            range: "Northern Australia, New Guinea",
+            iucnStatus: "Vulnerable",
+            funFact: "The southern cassowary is the third biggest bird after the ostrich and emu. Compared to the single wattled northern cassowary, it is slightly larger and has two wattles, which hang loosely from its neck."
+        },
+        {
+            id: "sumba-eclectus",
+            name: "Sumba Eclectus",
+            chineseName: "松巴折衷鹦鹉",
+            image: "sumba-eclectus.jpg",
+            zone: "Mysterious Papua",
+            lifespan: "30-50 years",
+            diet: "Fruits, nuts, seeds, flowers",
+            habitat: "Tropical forests",
+            range: "Sumba Island, Indonesia",
+            iucnStatus: "Endangered",
+            funFact: "Male and female eclectus parrots look so different that they were once thought to be separate species. Males are predominantly green; females are red or purplish red."
+        }
+    ],
     "penguin-cove": [
         {
             id: "king-penguin",
