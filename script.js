@@ -968,7 +968,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function loadBirdsByZone(zone) {
         birdsGrid.innerHTML = '';
-        if (birdData[zone]) {
+        
+        if (zone === 'found') {
+            // Show only found birds
+            Object.values(birdData).flat().forEach(bird => {
+                if (foundBirds[bird.id]) {
+                    createBirdCard(bird);
+                }
+            });
+        } else if (zone === 'not-found') {
+            // Show only not found birds
+            Object.values(birdData).flat().forEach(bird => {
+                if (!foundBirds[bird.id]) {
+                    createBirdCard(bird);
+                }
+            });
+        } else if (birdData[zone]) {
+            // Show birds from specific zone
             birdData[zone].forEach(bird => {
                 createBirdCard(bird);
             });
