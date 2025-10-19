@@ -1032,8 +1032,8 @@ function generateVisitSummary() {
                 </div>
             </div>
             
-            <div class="found-birds-list">
-                <h3>✅ 已发现的鸟类</h3>
+            <div class="found-birds-list print-section">
+                <h3>✅ 已发现的鸟类 (${foundCount}种)</h3>
                 <div class="birds-grid-summary">
                     ${allBirds.filter(bird => foundBirds[bird.id]).map(bird => `
                         <div class="bird-summary-card found">
@@ -1048,8 +1048,8 @@ function generateVisitSummary() {
                 </div>
             </div>
             
-            <div class="not-found-birds-list">
-                <h3>❌ 未发现的鸟类</h3>
+            <div class="not-found-birds-list print-section">
+                <h3>❌ 未发现的鸟类 (${notFoundCount}种)</h3>
                 <div class="birds-grid-summary">
                     ${allBirds.filter(bird => !foundBirds[bird.id]).map(bird => `
                         <div class="bird-summary-card not-found">
@@ -1336,6 +1336,112 @@ function showSummaryModal(content) {
         .action-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media print {
+            .summary-modal {
+                position: static !important;
+                background: white !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+            
+            .summary-modal-content {
+                max-width: none !important;
+                margin: 0 !important;
+                padding: 20px !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
+            
+            /* 汇总页面 - 只在第一页显示 */
+            .summary-header {
+                page-break-after: avoid;
+                margin-bottom: 20px;
+            }
+            
+            .summary-stats {
+                page-break-after: avoid;
+                margin-bottom: 20px;
+            }
+            
+            .zone-breakdown {
+                page-break-after: avoid;
+                margin-bottom: 20px;
+            }
+            
+            /* Found List - 新页面开始 */
+            .found-birds-list {
+                page-break-before: always;
+                page-break-inside: auto;
+            }
+            
+            .found-birds-list h3 {
+                page-break-after: avoid;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+                color: #28a745;
+            }
+            
+            .birds-grid-summary {
+                page-break-inside: auto;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            
+            /* Not Found List - 新页面开始 */
+            .not-found-birds-list {
+                page-break-before: always;
+                page-break-inside: auto;
+            }
+            
+            .not-found-birds-list h3 {
+                page-break-after: avoid;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+                color: #dc3545;
+            }
+            
+            /* 隐藏操作按钮 */
+            .summary-actions {
+                display: none !important;
+            }
+            
+            /* 鸟类卡片打印优化 */
+            .bird-summary-card {
+                page-break-inside: avoid;
+                break-inside: avoid;
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            
+            .bird-summary-image {
+                width: 100%;
+                height: 80px;
+                object-fit: contain;
+            }
+            
+            .bird-summary-name {
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+            
+            .bird-summary-chinese {
+                font-size: 0.7rem;
+            }
+            
+            .bird-summary-zone {
+                font-size: 0.6rem;
+            }
+            
+            /* 打印页面标题 */
+            .print-section h3::before {
+                content: "第 " counter(page) " 页 - ";
+                font-size: 0.8rem;
+                color: #666;
+            }
         }
     `;
     document.head.appendChild(style);
