@@ -190,6 +190,19 @@ body {
     box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
+.summary-btn {
+    background: #6f42c1;
+    color: white;
+    border-color: #6f42c1;
+}
+
+.summary-btn:hover {
+    background: #5a32a3;
+    border-color: #5a32a3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.3);
+}
+
 /* Birds grid - 5 cards per row */
 .birds-grid {
     display: grid;

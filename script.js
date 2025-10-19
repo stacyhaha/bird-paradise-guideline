@@ -967,6 +967,391 @@ function clearAllData() {
     }
 }
 
+// Generate visit summary report
+function generateVisitSummary() {
+    const allBirds = Object.values(birdData).flat();
+    const foundBirds = JSON.parse(localStorage.getItem('foundBirds') || '{}');
+    const foundCount = Object.keys(foundBirds).length;
+    const totalCount = allBirds.length;
+    const notFoundCount = totalCount - foundCount;
+    
+    // Group by zones
+    const zoneStats = {};
+    Object.keys(birdData).forEach(zone => {
+        const zoneBirds = birdData[zone];
+        const zoneFound = zoneBirds.filter(bird => foundBirds[bird.id]).length;
+        const zoneTotal = zoneBirds.length;
+        zoneStats[zone] = { found: zoneFound, total: zoneTotal };
+    });
+    
+    // Create summary HTML
+    const summaryHTML = `
+        <div class="visit-summary">
+            <div class="summary-header">
+                <h2>🐦 Bird Paradise 游览汇总</h2>
+                <p class="visit-date">游览日期: ${new Date().toLocaleDateString('zh-CN')}</p>
+            </div>
+            
+            <div class="summary-stats">
+                <div class="stat-card found">
+                    <div class="stat-number">${foundCount}</div>
+                    <div class="stat-label">已发现</div>
+                </div>
+                <div class="stat-card not-found">
+                    <div class="stat-number">${notFoundCount}</div>
+                    <div class="stat-label">未发现</div>
+                </div>
+                <div class="stat-card total">
+                    <div class="stat-number">${totalCount}</div>
+                    <div class="stat-label">总计</div>
+                </div>
+                <div class="stat-card progress">
+                    <div class="stat-number">${Math.round((foundCount / totalCount) * 100)}%</div>
+                    <div class="stat-label">完成度</div>
+                </div>
+            </div>
+            
+            <div class="zone-breakdown">
+                <h3>📊 各区域统计</h3>
+                <div class="zone-stats-grid">
+                    ${Object.entries(zoneStats).map(([zone, stats]) => {
+                        const zoneName = getZoneDisplayName(zone);
+                        const percentage = Math.round((stats.found / stats.total) * 100);
+                        return `
+                            <div class="zone-stat-card">
+                                <div class="zone-name">${zoneName}</div>
+                                <div class="zone-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: ${percentage}%"></div>
+                                    </div>
+                                    <div class="zone-numbers">${stats.found}/${stats.total} (${percentage}%)</div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+            
+            <div class="found-birds-list">
+                <h3>✅ 已发现的鸟类</h3>
+                <div class="birds-grid-summary">
+                    ${allBirds.filter(bird => foundBirds[bird.id]).map(bird => `
+                        <div class="bird-summary-card found">
+                            <img src="${getBirdImage(bird)}" alt="${bird.name}" class="bird-summary-image">
+                            <div class="bird-summary-info">
+                                <div class="bird-summary-name">${bird.name}</div>
+                                <div class="bird-summary-chinese">${bird.chineseName}</div>
+                                <div class="bird-summary-zone">${bird.zone}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="not-found-birds-list">
+                <h3>❌ 未发现的鸟类</h3>
+                <div class="birds-grid-summary">
+                    ${allBirds.filter(bird => !foundBirds[bird.id]).map(bird => `
+                        <div class="bird-summary-card not-found">
+                            <img src="${getBirdImage(bird)}" alt="${bird.name}" class="bird-summary-image">
+                            <div class="bird-summary-info">
+                                <div class="bird-summary-name">${bird.name}</div>
+                                <div class="bird-summary-chinese">${bird.chineseName}</div>
+                                <div class="bird-summary-zone">${bird.zone}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="summary-actions">
+                <button onclick="exportData()" class="action-btn export">📥 导出完整数据</button>
+                <button onclick="printSummary()" class="action-btn print">🖨️ 打印汇总</button>
+                <button onclick="closeSummary()" class="action-btn close">❌ 关闭汇总</button>
+            </div>
+        </div>
+    `;
+    
+    // Show summary in modal
+    showSummaryModal(summaryHTML);
+}
+
+function getZoneDisplayName(zone) {
+    const zoneNames = {
+        'wings-of-asia': '🦅 Wings of Asia',
+        'african-treetops': '🦜 Heart of Africa',
+        'crimson-wetlands': '🦩 Crimson Wetlands',
+        'australian-outback': '🦘 Australian Outback',
+        'amazonian-jewel': '🦜 Amazonian Jewel',
+        'lory-loft': '🦜 Lory Loft',
+        'mysterious-papua': '🌿 Mysterious Papua',
+        'penguin-cove': '🐧 Penguin Cove',
+        'songs-of-the-forest': '🎵 Songs of the Forest',
+        'birds-of-prey': '🦅 Birds of Prey'
+    };
+    return zoneNames[zone] || zone;
+}
+
+function showSummaryModal(content) {
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'summary-modal';
+    modal.innerHTML = `
+        <div class="summary-modal-content">
+            ${content}
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Add modal styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .summary-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .summary-modal-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .visit-summary {
+            text-align: center;
+        }
+        
+        .summary-header h2 {
+            color: #2F4F4F;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .visit-date {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .stat-card.found {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        }
+        
+        .stat-card.not-found {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+        }
+        
+        .stat-card.total {
+            border-color: #007bff;
+            background: linear-gradient(135deg, #cce7ff, #b3d9ff);
+        }
+        
+        .stat-card.progress {
+            border-color: #ffc107;
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2F4F4F;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .zone-breakdown {
+            margin-bottom: 40px;
+        }
+        
+        .zone-breakdown h3 {
+            color: #2F4F4F;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .zone-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .zone-stat-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .zone-name {
+            font-weight: bold;
+            color: #2F4F4F;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .zone-numbers {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .found-birds-list, .not-found-birds-list {
+            margin-bottom: 30px;
+        }
+        
+        .found-birds-list h3, .not-found-birds-list h3 {
+            color: #2F4F4F;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .birds-grid-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .bird-summary-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+        }
+        
+        .bird-summary-card.found {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        }
+        
+        .bird-summary-card.not-found {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+        }
+        
+        .bird-summary-image {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: white;
+        }
+        
+        .bird-summary-name {
+            font-weight: bold;
+            color: #2F4F4F;
+            font-size: 0.9rem;
+        }
+        
+        .bird-summary-chinese {
+            color: #6c757d;
+            font-size: 0.8rem;
+            margin: 2px 0;
+        }
+        
+        .bird-summary-zone {
+            color: #6c757d;
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2px 6px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .summary-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn.export {
+            background: #28a745;
+            color: white;
+        }
+        
+        .action-btn.print {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .action-btn.close {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+function printSummary() {
+    window.print();
+}
+
+function closeSummary() {
+    const modal = document.querySelector('.summary-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
 // Global variables
 let foundBirds = loadFoundBirds();
 
