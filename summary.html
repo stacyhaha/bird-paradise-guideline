@@ -96,18 +96,38 @@
         }
 
         .stat-label {
-            font-size: 1.2rem;
+            font-size: 1.2rem !important;
             color: #000000 !important;
-            margin-top: 10px;
-            font-weight: bold;
-            background: #ffffff;
-            padding: 6px 12px;
-            border-radius: 10px;
-            display: block;
-            z-index: 10;
-            position: relative;
-            border: 2px solid #000000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 10px !important;
+            font-weight: bold !important;
+            background: #ffffff !important;
+            padding: 6px 12px !important;
+            border-radius: 10px !important;
+            display: block !important;
+            z-index: 10 !important;
+            position: relative !important;
+            border: 2px solid #000000 !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
+            width: auto !important;
+            min-height: 30px !important;
+            line-height: 1.2 !important;
+        }
+        
+        /* Force stat labels to be visible */
+        .stat-card .stat-label {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            color: #000000 !important;
+            background: #ffffff !important;
+            border: 2px solid #000000 !important;
+            padding: 6px 12px !important;
+            margin-top: 10px !important;
+            font-size: 1.2rem !important;
+            font-weight: bold !important;
         }
 
         .zone-breakdown {
@@ -528,6 +548,24 @@
             document.getElementById('notFoundCountTitle').textContent = notFoundCount;
             
             console.log('Statistics updated:', { foundCount, notFoundCount, totalCount, progressPercent });
+            
+            // Force stat labels to be visible
+            setTimeout(() => {
+                const statLabels = document.querySelectorAll('.stat-label');
+                console.log('Found stat labels:', statLabels.length);
+                statLabels.forEach((label, index) => {
+                    console.log(`Label ${index}:`, label.textContent, label.style.display);
+                    label.style.display = 'block';
+                    label.style.visibility = 'visible';
+                    label.style.opacity = '1';
+                    label.style.color = '#000000';
+                    label.style.background = '#ffffff';
+                    label.style.border = '2px solid #000000';
+                    label.style.padding = '6px 12px';
+                    label.style.fontSize = '1.2rem';
+                    label.style.fontWeight = 'bold';
+                });
+            }, 100);
             
             // Update visit date
             const visitDate = new Date(summaryData.visitDate);
