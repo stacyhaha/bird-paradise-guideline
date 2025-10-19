@@ -464,15 +464,21 @@
     </div>
 
     <script>
-        // Load data from sessionStorage
+        // Load data from sessionStorage or localStorage
         function loadSummaryData() {
-            const summaryDataStr = sessionStorage.getItem('summaryData');
+            let summaryDataStr = sessionStorage.getItem('summaryData');
+            
+            // Try localStorage as backup
+            if (!summaryDataStr) {
+                summaryDataStr = localStorage.getItem('summaryData');
+            }
+            
             if (!summaryDataStr) {
                 document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h2>无法加载汇总数据</h2><p>请从主页面重新打开汇总页面</p><button onclick="window.close()">关闭页面</button></div>';
                 return;
             }
             
-            console.log('Loading summary data...');
+            console.log('Loading summary data...', summaryDataStr);
             
             const summaryData = JSON.parse(summaryDataStr);
             const foundBirds = summaryData.foundBirds;
@@ -711,8 +717,11 @@
             printWindow.print();
         }
         
-        // Load data when page loads
-        document.addEventListener('DOMContentLoaded', loadSummaryData);
+        // Load data when page loads with a small delay
+        document.addEventListener('DOMContentLoaded', function() {
+            // Small delay to ensure data is available
+            setTimeout(loadSummaryData, 100);
+        });
     </script>
 </body>
 </html>

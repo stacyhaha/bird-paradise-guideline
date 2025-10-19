@@ -982,6 +982,11 @@ function generateVisitSummary() {
     // Store data in sessionStorage for the summary page to access
     sessionStorage.setItem('summaryData', JSON.stringify(summaryData));
     
+    // Also store in localStorage as backup
+    localStorage.setItem('summaryData', JSON.stringify(summaryData));
+    
+    console.log('Summary data stored:', summaryData);
+    
     // Create a link element and click it to open in new tab
     const link = document.createElement('a');
     link.href = 'summary.html';
