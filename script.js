@@ -982,8 +982,15 @@ function generateVisitSummary() {
     // Store data in sessionStorage for the summary page to access
     sessionStorage.setItem('summaryData', JSON.stringify(summaryData));
     
-    // Open summary in new window/tab
-    window.open('summary.html', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+    // Open summary in new tab
+    const newWindow = window.open('summary.html', '_blank');
+    
+    // Check if popup was blocked
+    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+        alert('弹窗被阻止了！请允许弹窗或手动打开 summary.html 页面。');
+        // Fallback: try to navigate to the page
+        window.location.href = 'summary.html';
+    }
 }
 
 function getZoneDisplayName(zone) {

@@ -96,17 +96,18 @@
         }
 
         .stat-label {
-            font-size: 1.1rem;
-            color: #000000;
-            margin-top: 8px;
+            font-size: 1.2rem;
+            color: #000000 !important;
+            margin-top: 10px;
             font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 4px 8px;
-            border-radius: 8px;
-            display: inline-block;
-            z-index: 2;
+            background: #ffffff;
+            padding: 6px 12px;
+            border-radius: 10px;
+            display: block;
+            z-index: 10;
             position: relative;
+            border: 2px solid #000000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .zone-breakdown {
@@ -467,9 +468,11 @@
         function loadSummaryData() {
             const summaryDataStr = sessionStorage.getItem('summaryData');
             if (!summaryDataStr) {
-                document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h2>无法加载汇总数据</h2><p>请从主页面重新打开汇总页面</p></div>';
+                document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h2>无法加载汇总数据</h2><p>请从主页面重新打开汇总页面</p><button onclick="window.close()">关闭页面</button></div>';
                 return;
             }
+            
+            console.log('Loading summary data...');
             
             const summaryData = JSON.parse(summaryDataStr);
             const foundBirds = summaryData.foundBirds;
@@ -486,6 +489,8 @@
             document.getElementById('progressPercent').textContent = progressPercent + '%';
             document.getElementById('foundCountTitle').textContent = foundCount;
             document.getElementById('notFoundCountTitle').textContent = notFoundCount;
+            
+            console.log('Statistics updated:', { foundCount, notFoundCount, totalCount, progressPercent });
             
             // Update visit date
             const visitDate = new Date(summaryData.visitDate);
