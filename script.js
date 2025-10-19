@@ -967,113 +967,23 @@ function clearAllData() {
     }
 }
 
-// Generate visit summary report
+// Generate visit summary report - open in new window
 function generateVisitSummary() {
     const allBirds = Object.values(birdData).flat();
     const foundBirds = JSON.parse(localStorage.getItem('foundBirds') || '{}');
-    const foundCount = Object.keys(foundBirds).length;
-    const totalCount = allBirds.length;
-    const notFoundCount = totalCount - foundCount;
     
-    // Group by zones
-    const zoneStats = {};
-    Object.keys(birdData).forEach(zone => {
-        const zoneBirds = birdData[zone];
-        const zoneFound = zoneBirds.filter(bird => foundBirds[bird.id]).length;
-        const zoneTotal = zoneBirds.length;
-        zoneStats[zone] = { found: zoneFound, total: zoneTotal };
-    });
+    // Create a data object to pass to the summary page
+    const summaryData = {
+        allBirds: allBirds,
+        foundBirds: foundBirds,
+        visitDate: new Date().toISOString()
+    };
     
-    // Create summary HTML
-    const summaryHTML = `
-        <div class="visit-summary">
-            <div class="summary-header">
-                <h2>🐦 Bird Paradise 游览汇总</h2>
-                <p class="visit-date">游览日期: ${new Date().toLocaleDateString('zh-CN')}</p>
-            </div>
-            
-            <div class="summary-stats">
-                <div class="stat-card found">
-                    <div class="stat-number">${foundCount}</div>
-                    <div class="stat-label">已发现</div>
-                </div>
-                <div class="stat-card not-found">
-                    <div class="stat-number">${notFoundCount}</div>
-                    <div class="stat-label">未发现</div>
-                </div>
-                <div class="stat-card total">
-                    <div class="stat-number">${totalCount}</div>
-                    <div class="stat-label">总计</div>
-                </div>
-                <div class="stat-card progress">
-                    <div class="stat-number">${Math.round((foundCount / totalCount) * 100)}%</div>
-                    <div class="stat-label">完成度</div>
-                </div>
-            </div>
-            
-            <div class="zone-breakdown">
-                <h3>📊 各区域统计</h3>
-                <div class="zone-stats-grid">
-                    ${Object.entries(zoneStats).map(([zone, stats]) => {
-                        const zoneName = getZoneDisplayName(zone);
-                        const percentage = Math.round((stats.found / stats.total) * 100);
-                        return `
-                            <div class="zone-stat-card">
-                                <div class="zone-name">${zoneName}</div>
-                                <div class="zone-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: ${percentage}%"></div>
-                                    </div>
-                                    <div class="zone-numbers">${stats.found}/${stats.total} (${percentage}%)</div>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            </div>
-            
-            <div class="found-birds-list print-section">
-                <h3>✅ 已发现的鸟类 (${foundCount}种)</h3>
-                <div class="birds-grid-summary">
-                    ${allBirds.filter(bird => foundBirds[bird.id]).map(bird => `
-                        <div class="bird-summary-card found">
-                            <img src="${getBirdImage(bird)}" alt="${bird.name}" class="bird-summary-image">
-                            <div class="bird-summary-info">
-                                <div class="bird-summary-name">${bird.name}</div>
-                                <div class="bird-summary-chinese">${bird.chineseName}</div>
-                                <div class="bird-summary-zone">${bird.zone}</div>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-            
-            <div class="not-found-birds-list print-section">
-                <h3>❌ 未发现的鸟类 (${notFoundCount}种)</h3>
-                <div class="birds-grid-summary">
-                    ${allBirds.filter(bird => !foundBirds[bird.id]).map(bird => `
-                        <div class="bird-summary-card not-found">
-                            <img src="${getBirdImage(bird)}" alt="${bird.name}" class="bird-summary-image">
-                            <div class="bird-summary-info">
-                                <div class="bird-summary-name">${bird.name}</div>
-                                <div class="bird-summary-chinese">${bird.chineseName}</div>
-                                <div class="bird-summary-zone">${bird.zone}</div>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-            
-            <div class="summary-actions">
-                <button onclick="exportData()" class="action-btn export">📥 导出完整数据</button>
-                <button onclick="printSummary()" class="action-btn print">🖨️ 打印汇总</button>
-                <button onclick="closeSummary()" class="action-btn close">❌ 关闭汇总</button>
-            </div>
-        </div>
-    `;
+    // Store data in sessionStorage for the summary page to access
+    sessionStorage.setItem('summaryData', JSON.stringify(summaryData));
     
-    // Show summary in modal
-    showSummaryModal(summaryHTML);
+    // Open summary in new window/tab
+    window.open('summary.html', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
 }
 
 function getZoneDisplayName(zone) {
