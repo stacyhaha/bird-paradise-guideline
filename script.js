@@ -967,7 +967,7 @@ function clearAllData() {
     }
 }
 
-// Generate visit summary report - open in new window
+// Generate visit summary report - open in new tab
 function generateVisitSummary() {
     const allBirds = Object.values(birdData).flat();
     const foundBirds = JSON.parse(localStorage.getItem('foundBirds') || '{}');
@@ -982,15 +982,14 @@ function generateVisitSummary() {
     // Store data in sessionStorage for the summary page to access
     sessionStorage.setItem('summaryData', JSON.stringify(summaryData));
     
-    // Open summary in new tab
-    const newWindow = window.open('summary.html', '_blank');
-    
-    // Check if popup was blocked
-    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-        alert('弹窗被阻止了！请允许弹窗或手动打开 summary.html 页面。');
-        // Fallback: try to navigate to the page
-        window.location.href = 'summary.html';
-    }
+    // Create a link element and click it to open in new tab
+    const link = document.createElement('a');
+    link.href = 'summary.html';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 function getZoneDisplayName(zone) {
